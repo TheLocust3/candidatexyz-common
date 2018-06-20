@@ -9,15 +9,13 @@ Gem::Specification.new do |s|
   s.version     = Candidatexyz::Common::VERSION
   s.authors     = ["TheLocust3"]
   s.email       = ["jake.kinsella@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Candidatexyz::Common."
-  s.description = "TODO: Description of Candidatexyz::Common."
-  s.license     = "MIT"
+  s.homepage    = "https://github.com/TheLocust3/candidatexyz-common"
+  s.summary     = "candidateXYZ common libraries."
+  s.description = "candidateXYZ common libraries."
+  s.license     = "NONE"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 5.1.6"
   s.add_dependency "httparty"
-
-  s.add_development_dependency "sqlite3"
 end
