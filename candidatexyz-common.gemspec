@@ -6,7 +6,7 @@ require "candidatexyz/common/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "candidatexyz-common"
-  s.version     = Candidatexyz::Common::VERSION
+  s.version     = CandidateXYZ::Common::VERSION
   s.authors     = ["TheLocust3"]
   s.email       = ["jake.kinsella@gmail.com"]
   s.homepage    = "https://github.com/TheLocust3/candidatexyz-common"
