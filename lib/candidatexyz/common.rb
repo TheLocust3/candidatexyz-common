@@ -1,4 +1,4 @@
-require 'concerns/request'
+require_relative 'concerns/request'
 
 module Candidatexyz
   module Common
