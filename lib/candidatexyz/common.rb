@@ -1,5 +1,6 @@
+require 'concerns/request'
+
 module Candidatexyz
-  module Concerns
-    require 'concerns/request'
+  module Common
   end
 end
