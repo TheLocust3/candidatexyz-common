@@ -1,6 +1,6 @@
 require 'httparty'
 
-module Candidatexyz
+module CandidateXYZ
   module Concerns
     module Request
       extend ActiveSupport::Concern

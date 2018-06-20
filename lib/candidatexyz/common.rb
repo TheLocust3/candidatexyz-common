@@ -1,6 +1,6 @@
 require 'candidatexyz/concerns/request'
 
-module Candidatexyz
+module CandidateXYZ
   module Common
   end
 end

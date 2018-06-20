@@ -1,4 +1,4 @@
-module Candidatexyz
+module CandidateXYZ
   module Common
     VERSION = '0.1.0'
   end
