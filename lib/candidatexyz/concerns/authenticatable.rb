@@ -33,7 +33,7 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
-        user = UserWrapper.new(@current_user)
+        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
 
         if @current_user.nil?
           render :json => {}, :status => 401
