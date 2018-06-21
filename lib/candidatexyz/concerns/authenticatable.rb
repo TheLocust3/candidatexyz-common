@@ -1,5 +1,7 @@
 require 'httparty'
 
+require 'candidatexyz/common/user_wrapper'
+
 module CandidateXYZ
   module Concerns
     module Authenticatable
@@ -21,7 +23,9 @@ module CandidateXYZ
       end
 
       def authenticate_superuser
-        if @current_user.nil? || !@current_user.superuser
+        user = UserWrapper.new(@current_user)
+
+        if @current_user.nil? || !user.run('superuser')
           render :json => {}, :status => 401
 
           return
@@ -29,13 +33,15 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
+        user = UserWrapper.new(@current_user)
+
         if @current_user.nil?
           render :json => {}, :status => 401
 
           return
         end
 
-        @campaign_id = @current_user.campaign_id
+        @campaign_id = user.run('campaign_id')
       end
     end
   end

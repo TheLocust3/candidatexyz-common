@@ -63,4 +63,3 @@ module CandidateXYZ
     end
   end
 end
-  
