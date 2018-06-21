@@ -17,9 +17,15 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
+        if current_user.nil?
+          render :json => {}, :status => 401
+
+          return
+        end
+
         campaign_id = current_user.campaign_id
 
-        if campaign_id != params[:campaign_id]
+        if campaign_id != params[:campaign_id] && !current_user.superuser
           render :json => {}, :status => 401
         end
       end
