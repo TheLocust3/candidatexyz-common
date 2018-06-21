@@ -11,7 +11,8 @@ module CandidateXYZ
       end
 
       def self.find(id)
-        resource = get(endpoint(id}))
+        resource = get(endpoint(id))
+        
         Campaign.new(resource)
       end
 
