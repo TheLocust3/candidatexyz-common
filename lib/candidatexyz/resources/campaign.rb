@@ -11,15 +11,15 @@ module CandidateXYZ
       end
 
       def self.find(id)
-        resource = get(endpoint(id))
-        
+        resource = get(endpoint("/#{id}"))
+
         Campaign.new(resource)
       end
 
       def self.all
         resources = get(endpoint())
         
-        resources.map{ |resource|
+        resources.map { |resource|
           Campaign.new(resource)
         }
       end
@@ -39,7 +39,7 @@ module CandidateXYZ
 
       private
       def endpoint(url)
-        auth_endpoint("/campaigns/#{url}")
+        auth_endpoint("/campaigns#{url}")
       end
     end
   end

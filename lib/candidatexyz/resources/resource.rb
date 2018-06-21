@@ -12,6 +12,22 @@ module CandidateXYZ
         attr_accessor :auth_url, :api_url
       end
 
+      def self.find(id)
+
+      end
+
+      def self.all
+
+      end
+
+      def save
+
+      end
+
+      def update(parameters)
+
+      end
+
       protected
       def auth_endpoint(endpoint)
         auth_url + endpoint
