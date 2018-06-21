@@ -23,9 +23,9 @@ module CandidateXYZ
           return
         end
 
-        @campaign_id = current_user.campaign_id
+        @campaign_id = @current_user.campaign_id
 
-        if campaign_id != params[:campaign_id] && !current_user.superuser
+        if @campaign_id != params[:campaign_id] && !@current_user.superuser
           render :json => {}, :status => 401
         end
       end
