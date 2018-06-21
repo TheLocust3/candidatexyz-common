@@ -10,7 +10,7 @@ module CandidateXYZ
           response = HTTParty.get("#{Rails.application.secrets.auth_api}/auth/validate_token?uid=#{request.headers['uid']}&client=#{request.headers['client']}&access-token=#{request.headers['access-token']}")
           data = response.parsed_response
 
-          current_user = data['data']
+          @current_user = data['data']
         rescue
           render :json => {}, :status => 401
         end
@@ -23,7 +23,7 @@ module CandidateXYZ
           return
         end
 
-        campaign_id = current_user.campaign_id
+        @campaign_id = current_user.campaign_id
 
         if campaign_id != params[:campaign_id] && !current_user.superuser
           render :json => {}, :status => 401
