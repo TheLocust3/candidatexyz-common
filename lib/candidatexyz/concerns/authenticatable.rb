@@ -23,7 +23,7 @@ module CandidateXYZ
       end
 
       def authenticate_superuser
-        user = UserWrapper.new(@current_user)
+        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
 
         if @current_user.nil? || !user.run('superuser')
           render :json => {}, :status => 401
