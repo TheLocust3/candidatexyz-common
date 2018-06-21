@@ -11,6 +11,10 @@ module CandidateXYZ
           data = response.parsed_response
 
           @current_user = data['data']
+
+          if @current_user.nil?
+            render :json => {}, :status => 401
+          end
         rescue
           render :json => {}, :status => 401
         end
