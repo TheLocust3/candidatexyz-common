@@ -7,7 +7,7 @@ module CandidateXYZ
 
         def run(method)
             if @local_user.is_a? Hash
-                @local_user[method]
+                @local_user[method.camelize(:lower)]
             else
                 @local_user.send(method)
             end
