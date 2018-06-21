@@ -3,7 +3,7 @@ require 'candidatexyz/resources/resource'
 module CandidateXYZ
   module Resources
     class User < Resource
-      attr_accessor :id, :email, :first_name, :last_name, :admin, :superuser
+      attr_accessor :id, :email, :first_name, :last_name, :admin, :superuser, :campaign_id
 
       def initialize(parameters)
         @id = parameters[:id]
@@ -12,6 +12,7 @@ module CandidateXYZ
         @last_name = parameters[:lastName]
         @admin = parameters[:admin]
         @superuser = parameters[:superuser]
+        @campaign_id = parameters[:campaign_id]
       end
 
       def self.find(id)
@@ -23,7 +24,9 @@ module CandidateXYZ
       def self.find_by_campaign(campaign_id)
         resource = get(endpoint("?campaign_id=#{campaign_id}"))
 
-        User.new(resource)
+        resources.map { |resource|
+          User.new(resource)
+        }
       end
 
       def self.all
@@ -55,7 +58,7 @@ module CandidateXYZ
 
       private
       def endpoint(url)
-        auth_endpoint("/users#{url}")
+        auth_endpoint("/staff#{url}")
       end
     end
   end

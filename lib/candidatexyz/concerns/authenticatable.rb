@@ -15,6 +15,14 @@ module CandidateXYZ
           render :json => {}, :status => 401
         end
       end
+
+      def authenticate_campaign_id
+        campaign_id = current_user.campaign_id
+
+        if campaign_id != params[:campaign_id]
+          render :json => {}, :status => 401
+        end
+      end
     end
   end
 end
