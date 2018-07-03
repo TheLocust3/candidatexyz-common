@@ -6,7 +6,7 @@ module CandidateXYZ
       extend ActiveSupport::Concern
 
       def get(url)
-        response = HTTParty.post(url, {
+        response = HTTParty.get(url, {
           headers: auth_headers
         })
 
