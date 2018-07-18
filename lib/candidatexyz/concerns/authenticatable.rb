@@ -22,6 +22,16 @@ module CandidateXYZ
         end
       end
 
+      def authenticate_admin
+        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
+
+        if @current_user.nil? || !user.run('admin')
+          render :json => {}, :status => 401
+
+          return
+        end
+      end
+
       def authenticate_superuser
         user = CandidateXYZ::Common::UserWrapper.new(@current_user)
 
