@@ -9,7 +9,12 @@ module CandidateXYZ
 
       def authenticate
         begin
-          response = HTTParty.get("#{Rails.application.secrets.auth_api}/auth/validate_token?uid=#{request.headers['uid']}&client=#{request.headers['client']}&access-token=#{request.headers['access-token']}")
+          auth_str = "?uid=#{request.headers['uid']}&client=#{request.headers['client']}&access-token=#{request.headers['access-token']}"
+          if request.headers['uid'].nil? || request.headers['uid'].empty?
+            auth_str = "?uid=#{params['uid']}&client=#{params['client']}&access-token=#{params['access-token']}"
+          end
+
+          response = HTTParty.get("#{Rails.application.secrets.auth_api}/auth/validate_token#{auth_str}")
           data = response.parsed_response
 
           @current_user = data['data']
