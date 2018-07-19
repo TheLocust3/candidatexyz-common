@@ -10,7 +10,9 @@ module CandidateXYZ
       def authenticate
         begin
           auth_str = "?uid=#{request.headers['uid']}&client=#{request.headers['client']}&access-token=#{request.headers['access-token']}"
+          puts 'testestestestestestest'
           if request.headers['uid'].nil? || request.headers['uid'].empty?
+            puts 'heyeyeyeyeyeyeyyeyeyeyeyeyeyeyeyeyeyeyeyeyeyeyyea'
             auth_str = "?uid=#{params['uid']}&client=#{params['client']}&access-token=#{params['access-token']}"
           end
 
