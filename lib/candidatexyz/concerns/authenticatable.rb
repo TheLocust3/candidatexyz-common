@@ -17,7 +17,7 @@ module CandidateXYZ
           response = HTTParty.get("#{Rails.application.secrets.auth_api}/auth/validate_token#{auth_str}")
           data = response.parsed_response
 
-          @current_user = data['data']
+          @current_user = CandidateXYZ::Common::UserWrapper.new(data['data'])
 
           if @current_user.nil?
             render :json => {}, :status => 401
@@ -28,9 +28,7 @@ module CandidateXYZ
       end
 
       def authenticate_admin
-        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
-
-        if @current_user.nil? || !user.run('admin')
+        if @current_user.nil? || !@current_user.admin
           render :json => {}, :status => 401
 
           return
@@ -38,9 +36,7 @@ module CandidateXYZ
       end
 
       def authenticate_superuser
-        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
-
-        if @current_user.nil? || !user.run('superuser')
+        if @current_user.nil? || !@current_user.superuser
           render :json => {}, :status => 401
 
           return
@@ -48,15 +44,13 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
-        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
-
         if @current_user.nil?
           render :json => {}, :status => 401
 
           return
         end
 
-        @campaign_id = user.run('campaign_id')
+        @campaign_id = @current_user.campaign_id
       end
     end
   end

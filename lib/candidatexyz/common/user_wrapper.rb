@@ -5,11 +5,11 @@ module CandidateXYZ
             @local_user = user
         end
 
-        def run(method)
+        def method_missing(m, *args, &block)
             if @local_user.is_a? Hash
-                @local_user[method.camelize(:lower)]
+                @local_user[m.camelize(:lower)]
             else
-                @local_user.send(method)
+                @local_user.send(m)
             end
         end
     end
