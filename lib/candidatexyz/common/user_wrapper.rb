@@ -5,6 +5,10 @@ module CandidateXYZ
             @local_user = user
         end
 
+        def unauthorized?
+            return @local_user.nil? || @local_user.empty?
+        end
+
         def method_missing(m, *args, &block)
             if @local_user.is_a? Hash
                 @local_user[m.to_s.camelize(:lower)]

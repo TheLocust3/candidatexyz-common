@@ -19,7 +19,7 @@ module CandidateXYZ
 
           @current_user = CandidateXYZ::Common::UserWrapper.new(data['data'])
 
-          if @current_user.nil?
+          if @current_user.unauthorized?
             render :json => {}, :status => 401
           end
         rescue
@@ -28,7 +28,7 @@ module CandidateXYZ
       end
 
       def authenticate_admin
-        if @current_user.nil? || !@current_user.admin
+        if @current_user.unauthorized? || !@current_user.admin
           render :json => {}, :status => 401
 
           return
@@ -36,7 +36,7 @@ module CandidateXYZ
       end
 
       def authenticate_superuser
-        if @current_user.nil? || !@current_user.superuser
+        if @current_user.unauthorized? || !@current_user.superuser
           render :json => {}, :status => 401
 
           return
@@ -44,7 +44,7 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
-        if @current_user.nil?
+        if @current_user.unauthorized?
           render :json => {}, :status => 401
 
           return
