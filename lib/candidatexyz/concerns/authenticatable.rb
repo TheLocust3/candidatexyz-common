@@ -44,7 +44,7 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
-        if @current_user.nil? || @current_user.empty?
+        if @current_user.nil?
           render :json => {}, :status => 401
 
           return
