@@ -6,7 +6,11 @@ module CandidateXYZ
         end
 
         def unauthorized?
-            return @local_user.nil? || @local_user.empty?
+            if @local_user.is_a? Hash
+                return @local_user.nil? || @local_user.empty?
+            end
+
+            return @local_user.nil?
         end
 
         def method_missing(m, *args, &block)
