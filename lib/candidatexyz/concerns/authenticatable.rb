@@ -28,7 +28,9 @@ module CandidateXYZ
       end
 
       def authenticate_admin
-        if @current_user.unauthorized? || !@current_user.admin
+        user = CandidateXYZ::Common::UserWrapper.new(@current_user) # just in case we get a user object
+
+        if user.unauthorized? || !user.admin
           render :json => {}, :status => 401
 
           return
@@ -36,7 +38,9 @@ module CandidateXYZ
       end
 
       def authenticate_superuser
-        if @current_user.unauthorized? || !@current_user.superuser
+        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
+
+        if user.unauthorized? || !user.superuser
           render :json => {}, :status => 401
 
           return
@@ -44,13 +48,15 @@ module CandidateXYZ
       end
 
       def authenticate_campaign_id
-        if @current_user.unauthorized?
+        user = CandidateXYZ::Common::UserWrapper.new(@current_user)
+
+        if user.unauthorized?
           render :json => {}, :status => 401
 
           return
         end
 
-        @campaign_id = @current_user.campaign_id
+        @campaign_id = user.campaign_id
       end
     end
   end
