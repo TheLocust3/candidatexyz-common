@@ -10,9 +10,6 @@ echo BUNDLE_PATH: vendor/bundle > ~/.bundle/config
 
 gem install bundler
 
-git checkout master
-git pull
-
 cd user-api/
 
 bundle config --local local.candidatexyz-common ../
