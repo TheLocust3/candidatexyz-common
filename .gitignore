@@ -18,3 +18,5 @@ tmp/
 terraform.tfstate*
 
 *.log
+
+test/reports
