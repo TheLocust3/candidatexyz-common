@@ -22,7 +22,10 @@ module CandidateXYZ
           if @current_user.unauthorized?
             render :json => {}, :status => 401
           end
-        rescue
+        rescue Exception => e
+          puts e
+          puts e.backtrace
+
           render :json => {}, :status => 401
         end
       end
@@ -33,7 +36,7 @@ module CandidateXYZ
         if user.unauthorized? || !user.admin
           render :json => {}, :status => 401
 
-          return
+          return 401
         end
       end
 
@@ -43,7 +46,7 @@ module CandidateXYZ
         if user.unauthorized? || !user.superuser
           render :json => {}, :status => 401
 
-          return
+          return 401
         end
       end
 
@@ -53,7 +56,7 @@ module CandidateXYZ
         if user.unauthorized?
           render :json => {}, :status => 401
 
-          return
+          return 401
         end
 
         @campaign_id = user.campaign_id
