@@ -12,6 +12,7 @@ gem install bundler
 
 cd user-api/
 
+bundle config disable_local_branch_check true
 bundle config --local local.candidatexyz-common ../
 bundle install --path vendor/bundle
 
